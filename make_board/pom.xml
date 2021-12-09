@@ -68,6 +68,14 @@
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		</dependency>
+		
+		<!-- 날짜포멧 -->
+		<dependency>
+		    <groupId>net.sargue</groupId>
+		    <artifactId>java-time-jsptags</artifactId>
+	    	<version>1.1.4</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

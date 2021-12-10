@@ -9,6 +9,20 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <title>글 내용</title>
 </head>
+<script>
+function chkSubmit(uid){
+	
+	if(confirm("정말 삭제하시겠습니까?") == true){
+		
+		location.href='/board/deleteOk?uid=' + uid;
+		
+	}else{
+		
+		return;
+	}
+	
+}
+</script>
 <style>
 body{
 	width:40%;
@@ -44,6 +58,13 @@ td{
     </tr>
   </tbody>
 </table>
+<div>
+	<div style="margin:auto; display:flex; width:75%">
+		<button onClick="location.href='/board/update?uid=${dto[0].uid }'" type="button" class="btn btn-secondary btn-lg btn-block" style=" margin-right:20px; margin-top:30px">수정하기</button>
+		<button onClick="chkSubmit(${dto[0].uid})" type="submit" class="btn btn-secondary btn-lg btn-block" style="margin-top:30px">삭제하기</button>
+		<button onClick="location.href='/board/list'" type="button" class="btn btn-secondary btn-lg btn-block" style="margin-left:20px; margin-top:30px">목록보기</button>
+	</div>
+</div>
 
 </body>
 </html>

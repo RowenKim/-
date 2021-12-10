@@ -49,10 +49,30 @@ public class BoardController {
 	// 게시글 하나 선택
 	@RequestMapping("/info")
 	public String info(int uid,Model model, BoardDTO dto) {
-		System.out.println("맵핑성공");
-		System.out.println(boardService.selectOne(uid).toString());
+//		System.out.println("맵핑성공");
+//		System.out.println(boardService.selectOne(uid).toString());
 		model.addAttribute("dto", boardService.selectOne(uid));
 		
 		return "info";
+	}
+	
+	@RequestMapping("/deleteOk")
+	public String delete(int uid, Model model) {
+		model.addAttribute("result", boardService.deleteBoard(uid)); 
+		return "deleteOk";
+	}
+	
+	@RequestMapping("/update")
+	public String update(int uid, Model model) {
+		model.addAttribute("dto", boardService.selectOne(uid)); 
+		return "update";
+	}
+	
+	@RequestMapping("/updateOk")
+	public String updateOk(Model model, BoardDTO dto) {
+		System.out.println(dto.toString());
+		model.addAttribute("result", boardService.updateBoard(dto)); 
+		model.addAttribute("uid", dto.getUid());
+		return "updateOk";
 	}
 }

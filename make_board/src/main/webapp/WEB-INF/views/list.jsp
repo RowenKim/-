@@ -19,6 +19,20 @@
 	}
 
 </style>
+<style>
+
+#test {
+    float: right;
+    position: relative;
+    left: -50%;
+}
+
+#test li {
+    float: left;
+    position: relative;
+    left: 50%;
+}
+</style>
 <body>
 <div style="text-align:center;padding:50px 0px;"><h1><b>글 목록</b></h1></div>
 <table class="table">
@@ -43,6 +57,17 @@
   	</c:forEach>
   </tbody>
 </table>
-<button onClick="location.href='/board/write'" type="button" class="btn btn-secondary btn-lg btn-block" style="width:10%; margin:auto; margin-top:30px">글 작성</button>
+<nav aria-label="Page navigation example" style="padding-bottom:50px; padding-top:20px;">
+  <ul class="pagination" id="test">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+<button onClick="location.href='/board/write'" type="button" class="btn btn-secondary btn-lg btn-block" style="width:10%; margin:auto; margin-top:30px; margin-bottom:200px;">글 작성</button>
 </body>
 </html>

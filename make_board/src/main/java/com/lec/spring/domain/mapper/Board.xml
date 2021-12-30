@@ -12,6 +12,10 @@
 	<select id="selectAll" resultType="com.lec.spring.domain.BoardDTO">
 		SELECT * FROM board ORDER BY uid DESC
 	</select>
+	
+	<select id="selectAllCnt" resultType="int">
+		SELECT count(*) FROM board
+	</select>
 
 	<select id="selectOne" resultType="com.lec.spring.domain.BoardDTO">
 		SELECT * FROM board WHERE uid = #{param}
@@ -29,6 +33,9 @@
 	<delete id="deleteBoard" flushCache="true">
 		DELETE FROM board WHERE uid = #{param}
 	</delete>
-
+	
+	<select id="selectPageList" resultType="com.lec.spring.domain.BoardDTO">
+		SELECT A.* FROM (SELECT * FROM board ORDER BY uid DESC) A LIMIT #{pageCnt} OFFSET #{lastPage};
+	</select>
 
 </mapper>

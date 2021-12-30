@@ -17,4 +17,10 @@ public interface BoardDAO {
 	
 	// 게시글 삭제
 	public abstract int deleteBoard(int uid);
+	
+	// 게시글 페이징 처리
+	public abstract List<BoardDTO> selectPageList(int pageCnt, int lastPage);
+	
+	// 전체 게시글 수 
+	public abstract int selectAllCnt();
 }

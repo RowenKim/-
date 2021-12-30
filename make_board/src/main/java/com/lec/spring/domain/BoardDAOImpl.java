@@ -42,4 +42,14 @@ public class BoardDAOImpl implements BoardDAO {
 		return mapper.deleteBoard(uid);
 	}
 
+	@Override
+	public List<BoardDTO> selectPageList(int pageCnt, int lastPage) {
+		return mapper.selectPageList(pageCnt, lastPage);
+	}
+
+	@Override
+	public int selectAllCnt() {
+		return mapper.selectAllCnt();
+	}
+
 }

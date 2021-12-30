@@ -42,4 +42,17 @@ public class BoardService {
 	public int insertBoard(BoardDTO dto){
 		return dao.insertBoard(dto);
 	}
+	
+	// 게시글 페이징 처리
+	public List<BoardDTO> selectPageList(int pageCnt, int lastPage){
+//		System.out.println("firstPage =>" + pageCnt);
+//		System.out.println("lastPage =>" + lastPage);
+		return dao.selectPageList(pageCnt, lastPage);
+	}
+	
+	public int selectAllCnt() {
+		System.out.println(dao.selectAllCnt());
+		return dao.selectAllCnt();
+	}
+	
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lec.spring.domain.BoardDTO;
 import com.lec.spring.service.BoardService;
@@ -22,9 +23,16 @@ public class BoardController {
 	
 	// 전체 게시글 선택 
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list(@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="pageCnt", defaultValue="10") int pageCnt, Model model) {
 		
-		model.addAttribute("list", boardService.selectAll());
+		int lastPage = (page - 1) * 10; // 만약 페이지가 1이면 10까지, 2면 20까지
+		
+//		model.addAttribute("list", boardService.selectAll());
+		model.addAttribute("allCnt", boardService.selectAllCnt());
+		model.addAttribute("pageCnt", pageCnt);
+		model.addAttribute("list", boardService.selectPageList(pageCnt, lastPage));
+		model.addAttribute("page", page);
 		
 		return "list";
 	}

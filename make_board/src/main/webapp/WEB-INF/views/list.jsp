@@ -94,9 +94,13 @@
   	</c:forEach>
   </tbody>
 </table>
-<c:forEach var="i" begin="0" end="${allCnt }">
-	
-</c:forEach>
+<b>총 페이지 갯수 ${allCnt / 10 }</b>
+<ul>
+	<c:forEach var="i" begin="1" end="${allCnt / 5 / 5}">
+			<li>총 페이지 갯수 : ${i }</li>
+			<li>페이지 마지막 갯수 : ${allCnt % 5 }</li>
+	</c:forEach>
+</ul>
 <nav aria-label="Page navigation example" style="padding-bottom:50px; padding-top:20px;">
   <ul class="pagination" id="test">
     <li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">Previous</a></li>

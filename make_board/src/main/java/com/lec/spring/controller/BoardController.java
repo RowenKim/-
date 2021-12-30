@@ -26,7 +26,7 @@ public class BoardController {
 	public String list(@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="pageCnt", defaultValue="10") int pageCnt, Model model) {
 		
-		int lastPage = (page - 1) * 10; // 만약 페이지가 1이면 10까지, 2면 20까지
+		int lastPage = (page - 1) * pageCnt; // 페이지에 나타낼 게시글 수에 따라 곱하는 수가 바뀜
 		
 //		model.addAttribute("list", boardService.selectAll());
 		model.addAttribute("allCnt", boardService.selectAllCnt());

@@ -94,11 +94,11 @@
   	</c:forEach>
   </tbody>
 </table>
-<b>총 페이지 갯수 ${allCnt / 10 }</b>
+<b>총 페이지 갯수 ${allCnt / pageCnt }</b>
 <ul>
-	<c:forEach var="i" begin="1" end="${allCnt / 5 / 5}">
+	<c:forEach var="i" begin="1" end="${allCnt / pageCnt}">
 			<li>총 페이지 갯수 : ${i }</li>
-			<li>페이지 마지막 갯수 : ${allCnt % 5 }</li>
+			<li>페이지 마지막 갯수 : ${allCnt % pageCnt }</li>
 	</c:forEach>
 </ul>
 <nav aria-label="Page navigation example" style="padding-bottom:50px; padding-top:20px;">

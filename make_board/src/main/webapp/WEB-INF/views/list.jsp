@@ -94,6 +94,7 @@
   	</c:forEach>
   </tbody>
 </table>
+<%--
 <b>총 페이지 갯수 ${allCnt / pageCnt }</b>
 <ul>
 	<c:forEach var="i" begin="1" end="${allCnt / pageCnt}">
@@ -101,15 +102,14 @@
 			<li>페이지 마지막 갯수 : ${allCnt % pageCnt }</li>
 	</c:forEach>
 </ul>
+ --%>
 <nav aria-label="Page navigation example" style="padding-bottom:50px; padding-top:20px;">
   <ul class="pagination" id="test">
-    <li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">1</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=2&pageCnt=${pageCnt }">2</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=3&pageCnt=${pageCnt }">3</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=4&pageCnt=${pageCnt }">4</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=5&pageCnt=${pageCnt }">5</a></li>
-    <li class="page-item"><a class="page-link" href="list?page=${page + 1 }&pageCnt=${pageCnt }">Next</a></li>
+	    <li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">Previous</a></li>
+  	<c:forEach var="i" begin="1" end="${allCnt / pageCnt}">
+	    <li class="page-item"><a class="page-link" href="list?page=${i }&pageCnt=${pageCnt }">${i }</a></li>
+	</c:forEach>
+	    <li class="page-item"><a class="page-link" href="list?page=${page + 1 }&pageCnt=${pageCnt }">Next</a></li>
   </ul>
 </nav>
 <button onClick="location.href='/board/write'" type="button" class="btn btn-secondary btn-lg btn-block" style="width:10%; margin:auto; margin-top:30px; margin-bottom:200px;">글 작성</button>

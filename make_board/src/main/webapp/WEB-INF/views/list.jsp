@@ -4,6 +4,8 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %> <!-- LocalDateTime의 값을 포멧해주기 위해 pom.xml에 의존성 주입 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -94,22 +96,49 @@
   	</c:forEach>
   </tbody>
 </table>
-<%--
-<b>총 페이지 갯수 ${allCnt / pageCnt }</b>
-<ul>
-	<c:forEach var="i" begin="1" end="${allCnt / pageCnt}">
-			<li>총 페이지 갯수 : ${i }</li>
-			<li>페이지 마지막 갯수 : ${allCnt % pageCnt }</li>
-	</c:forEach>
-</ul>
- --%>
+
+
+<c:set var="doneLoop" value="false"/> <%-- forEach문 break와 같은 기능을 하기위한 변수선언 --%>
+
+<%--선택한 페이지가 0번대일경우 10번대일경우 20번대일경우 나눠주기. 
+	경우에 따라 1~10, 11~20, 21~30. . . 
+ 	ex) 1~10일 경우 -1을 해주고 10을 나눠줄 경우 몫이 0으로 나오게 해주는데 실수로 나와서 Int형 타입으로 변환 후 변수선언 --%>
+<fmt:parseNumber var= "pages" integerOnly= "true" value= "${(page - 1) / 10 }" />
+
+<%-- 마지막 페이지의 갯수가 게시글 나타내는 수를 못 채울 경우 소수점으로 나오기 때문에 소수점을 날리고 Int형으로 변수 선언 --%> 
+<fmt:parseNumber var= "pageCntTest" integerOnly= "true" value= "${allCnt / pageCnt}" />
+
+<%-- 페이징 마지막 페이지 나타낼 게시글 수에 미치지 못할 경우 처리. --%>
+<c:choose>
+	<c:when test="${allCnt / pageCnt > pageCntTest }">  <%-- allCnt / pageCnt 전체게시글 나누기 한 페이지에 나타낼 게시글 수(소수점포함)
+															pageCntTest 	  전체게시글 나누기 한 페이지에 나타낼 게시글 수(소수점날린 변수) 두 수를 비교해서 소수점이 있는경우 마지막페이지 +1 추가--%>
+		<fmt:parseNumber var= "paging" integerOnly= "true" value= "${pageCntTest + 1}" />
+	</c:when>
+	<c:otherwise>
+		<fmt:parseNumber var= "paging" integerOnly= "true" value= "${pageCntTest }" /> <%-- 그렇지 않은 경우는 한 페이지에 나타나는 게시글 수에 맞게 페이징 처리가 되기 때문에 마지막페이지 +1 해주지 않아도 됩니다 --%>
+	</c:otherwise>
+</c:choose>
+
 <nav aria-label="Page navigation example" style="padding-bottom:50px; padding-top:20px;">
   <ul class="pagination" id="test">
-	    <li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">Previous</a></li>
-  	<c:forEach var="i" begin="1" end="${allCnt / pageCnt}">
-	    <li class="page-item"><a class="page-link" href="list?page=${i }&pageCnt=${pageCnt }">${i }</a></li>
+  	<c:if test="${pages > 0 }"> <%--선택한 페이지가 10을 초과하게 되면 if 조건문이 충족되어 if문이 실행 --%>
+  		<li class="page-item"><a class="page-link" href="list?page=1&pageCnt=${pageCnt }">맨앞으로</a></li>
+  	</c:if>
+    <li class="page-item"><a class="page-link" href="list?page=${page - 1 }&pageCnt=${pageCnt }">Previous</a></li>
+  	<c:forEach var="i" begin="${pages * 10 + 1}" end="${paging }"> <%--선택한 페이지에 따라 출력가능한 페이지까지 반복문 실행--%>
+  		<c:if test="${doneLoop ne true }"> <%--doneLoop가 true가 아닐 경우에 if문 실행 --%>
+	  		<c:choose>
+	  			<c:when test="${i % 10 != 0 }"> <%-- 1 ~ 10일 경우 반복문이 10번이 되기 전 까지 실행--%>
+				    <li class="page-item"><a class="page-link" href="list?page=${i }&pageCnt=${pageCnt }">${i }</a></li>
+	  			</c:when>
+	  			<c:otherwise>
+	  				<li class="page-item"><a class="page-link" href="list?page=${i }&pageCnt=${pageCnt }">${i }</a></li> <%--위 <c:when> 조건문을 충족하지 못한 10을 출력해주기 --%>
+	  				<c:set var="doneLoop" value="true"/> <%-- 10번 반복문이 실행이 될 경우 doneLoop true로 바꿔주기 --%>
+	  			</c:otherwise>
+	  		</c:choose>
+  		</c:if>
 	</c:forEach>
-	    <li class="page-item"><a class="page-link" href="list?page=${page + 1 }&pageCnt=${pageCnt }">Next</a></li>
+    <li class="page-item"><a class="page-link" href="list?page=${page + 1 }&pageCnt=${pageCnt }">Next</a></li>
   </ul>
 </nav>
 <button onClick="location.href='/board/write'" type="button" class="btn btn-secondary btn-lg btn-block" style="width:10%; margin:auto; margin-top:30px; margin-bottom:200px;">글 작성</button>

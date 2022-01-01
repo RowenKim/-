@@ -13,7 +13,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Autowired
 	public BoardDAOImpl(SqlSession sqlSession) {
-		System.out.println("BoardDAOImpl() 생성");
+//		System.out.println("BoardDAOImpl() 생성");
 		mapper = sqlSession.getMapper(BoardDAO.class);
 	}
 	

@@ -45,8 +45,8 @@ public class BoardService {
 	
 	// 게시글 페이징 처리
 	public List<BoardDTO> selectPageList(int pageCnt, int lastPage){
-		System.out.println("firstPage =>" + pageCnt);
-		System.out.println("lastPage =>" + lastPage);
+//		System.out.println("firstPage =>" + pageCnt);
+//		System.out.println("lastPage =>" + lastPage);
 		return dao.selectPageList(pageCnt, lastPage);
 	}
 	

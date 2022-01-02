@@ -48,7 +48,7 @@ class DummyData {
 			// 테스트용 dummy 데이터 만들기
 			pstmt = conn.prepareStatement(SQL_WRITE_INSERT);
 			
-			int num = 50;
+			int num = 100;
 			for(int i = 0; i < num; i++) {
 				pstmt.setString(1, String.format("%s", userId[rd.nextInt(9)])); 
 				pstmt.setString(2, String.format("content%04d", i));	// content0000, content0001 .....

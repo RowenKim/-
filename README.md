@@ -1,4 +1,4 @@
-
+<hr>
 # 게시판 만들기
 > 간단한 게시판 만들기(작성, 목록, 수정, 삭제, 페이징처리)
 
@@ -41,4 +41,12 @@
 <img width="755" alt="login" src="https://user-images.githubusercontent.com/90335434/147870145-e061e312-810f-41c8-bcfe-c22304650b37.png">
 </div>
 </details>
+<hr>
+
+<b>자세한 코드 설명은 아래 블로그 링크 참고</b>
+
+
+- https://rowen.tistory.com/6 게시글 목록 만들기
+- https://rowen.tistory.com/7 게시글 작성 수정 삭제 
+- https://rowen.tistory.com/8 게시글 페이징처리
 

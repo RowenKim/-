@@ -27,7 +27,7 @@ h1{
 }
 </style>
 <body>
-<h1>작성페이지 입니다!</h1>
+<h1>수정페이지 입니다!</h1>
 <form name="frm" action="/board/updateOk" method="POST">
 	<div class="input-group mb-3" id="title">
 	  <div class="input-group-prepend">

@@ -73,6 +73,8 @@
 </div>
 <b style="float:right; margin-right:10%;">전체 게시글 수 : ${allCnt }</b>
 <br>
+<b style="float:right; margin-right:10%;">현재 페이지 : ${page }</b>
+<br>
 <br>
 <table class="table">
   <thead>
